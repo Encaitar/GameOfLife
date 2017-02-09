@@ -24,7 +24,7 @@ public class AllTests
     @Test
     public void rule1_zeroNeighbours()
     {
-        GameOfLife gameOfLife = new GameOfLife(3,3);
+        GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
             
@@ -45,7 +45,7 @@ public class AllTests
     @Test
     public void rule1_oneNeighbour()
     {
-        GameOfLife gameOfLife = new GameOfLife(3,3);
+        GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
         gameOfLife.set(coords.getX(), coords.getY()+1, GameOfLife.ALIVE);
@@ -67,7 +67,7 @@ public class AllTests
     @Test
     public void rule2_twoNeighbours()
     {
-        GameOfLife gameOfLife = new GameOfLife(3,3);
+        GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
         gameOfLife.set(coords.getX(), coords.getY()+1, GameOfLife.ALIVE);
@@ -90,7 +90,7 @@ public class AllTests
     @Test
     public void rule2_threeNeighbours()
     {
-        GameOfLife gameOfLife = new GameOfLife(3,3);
+        GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
         gameOfLife.set(coords.getX(), coords.getY()+1, GameOfLife.ALIVE);
@@ -114,7 +114,7 @@ public class AllTests
     @Test
     public void rule3_fourNeighbours()
     {
-        GameOfLife gameOfLife = new GameOfLife(3,3);
+        GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
         gameOfLife.set(coords.getX()-1, coords.getY()-1, GameOfLife.ALIVE);
@@ -139,7 +139,7 @@ public class AllTests
     @Test
     public void rule3_fiveNeighbours()
     {
-        GameOfLife gameOfLife = new GameOfLife(3,3);
+        GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
         gameOfLife.set(coords.getX()-1, coords.getY()-1, GameOfLife.ALIVE);
@@ -165,7 +165,7 @@ public class AllTests
     @Test
     public void rule3_sixNeighbours()
     {
-        GameOfLife gameOfLife = new GameOfLife(3,3);
+        GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
         gameOfLife.set(coords.getX()-1, coords.getY()-1, GameOfLife.ALIVE);
@@ -192,7 +192,7 @@ public class AllTests
     @Test
     public void rule3_sevenNeighbours()
     {
-        GameOfLife gameOfLife = new GameOfLife(3,3);
+        GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
         gameOfLife.set(coords.getX()-1, coords.getY()-1, GameOfLife.ALIVE);
@@ -220,7 +220,7 @@ public class AllTests
     @Test
     public void rule3_eightNeighbours()
     {
-        GameOfLife gameOfLife = new GameOfLife(3,3);
+        GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
         gameOfLife.set(coords.getX()-1, coords.getY()-1, GameOfLife.ALIVE);
@@ -248,7 +248,7 @@ public class AllTests
     @Test
     public void rule4_exactlyThreeNeighbours()
     {
-        GameOfLife gameOfLife = new GameOfLife(3,3);
+        GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords.getX(), coords.getY()+1, GameOfLife.ALIVE);
         gameOfLife.set(coords.getX()+1, coords.getY(), GameOfLife.ALIVE);
