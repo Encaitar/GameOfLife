@@ -1,5 +1,7 @@
 package GOL;
 
+import java.util.Set;
+import java.util.Map;
 import java.util.HashMap;
 
 public class GameOfLife
@@ -9,16 +11,9 @@ public class GameOfLife
 
     private HashMap<Coordinates, Boolean> cellMap;
 
-    public GameOfLife(int x, int y)
+    public GameOfLife()
     {
         cellMap = new HashMap<Coordinates, Boolean>();
-        for(int i = 0; i < x; i++)
-        {
-            for(int j = 0; j < y; j++)
-            {
-                cellMap.put(new Coordinates(i,j), DEAD);
-            }
-        }
     }
 
     public void set(int x, int y, boolean alive)
@@ -29,51 +24,56 @@ public class GameOfLife
 
     public void set(Coordinates coords, boolean alive)
     {
-        /*
-         * If what we are being asked to set the value to is not its current
-         * value then set it.
-         */
-        if(alive != cellMap.get(coords))
-        {
-            cellMap.remove(coords);
-            cellMap.put(coords, alive);
-        }
+        cellMap.put(coords, alive);
     }
 
+    private Set<Coordinates> getCoords()
+    {
+        return cellMap.keySet();
+    }
+    
+    private boolean containsCoords(Coordinates coords)
+    {
+        return cellMap.containsKey(coords);
+    }
+    
     public boolean get(Coordinates coords)
     {
-        return cellMap.get(coords);
+        Boolean value = cellMap.get(coords);
+        return value != null ? value : false;
     }
 
-    private int neighbours(Coordinates coords)
+    private int neighbours(Coordinates coords, Map<Coordinates, Boolean> tempMap)
     {
         int x = coords.getX();
         int y = coords.getY();
         int count = 0;
         
-        count += isAlive(x-1, y-1) ? 1 : 0;
-        count += isAlive(x, y-1) ? 1 : 0;
-        count += isAlive(x+1, y-1) ? 1 : 0;
+        count += isAlive(x-1, y-1, tempMap) ? 1 : 0;
+        count += isAlive(x, y-1, tempMap) ? 1 : 0;
+        count += isAlive(x+1, y-1, tempMap) ? 1 : 0;
 
-        count += isAlive(x-1, y) ? 1 : 0;
-        count += isAlive(x+1, y) ? 1 : 0;
+        count += isAlive(x-1, y, tempMap) ? 1 : 0;
+        count += isAlive(x+1, y, tempMap) ? 1 : 0;
 
-        count += isAlive(x-1, y+1) ? 1 : 0;
-        count += isAlive(x, y+1) ? 1 : 0;
-        count += isAlive(x+1, y+1) ? 1 : 0;
+        count += isAlive(x-1, y+1, tempMap) ? 1 : 0;
+        count += isAlive(x, y+1, tempMap) ? 1 : 0;
+        count += isAlive(x+1, y+1, tempMap) ? 1 : 0;
 
         return count;
     }
 
-    public boolean isAlive(int x, int y)
+    public boolean isAlive(int x, int y, Map<Coordinates, Boolean> tempMap)
     {
         Coordinates coords = new Coordinates(x,y);
-        if(cellMap.containsKey(coords))
+        if(containsCoords(coords))
         {
-            return cellMap.get(coords);
+            return get(coords);
         }
         else
         {
+            // Becomes a relevant cell for next iteration.
+            tempMap.put(coords, false);
             return false;
         }
     }
@@ -90,14 +90,22 @@ public class GameOfLife
      */
     public void step()
     {
-        HashMap<Coordinates, Boolean> tempMap;
-        tempMap = new HashMap<Coordinates, Boolean>();
-        int count = 0;
-
+        // Update the collection of relevant coordinates before evaluating over it.
+        HashMap<Coordinates, Boolean> map = new HashMap<Coordinates, Boolean>();
         for(Coordinates coords : cellMap.keySet())
         {
-            count = neighbours(coords);
-            boolean currentValue = cellMap.get(coords);
+            map.put(coords, get(coords));
+            neighbours(coords, map);
+        }
+        cellMap = map;
+        
+        // Evaluate the rules of the game for each relevant coordinate.
+        HashMap<Coordinates, Boolean> tempMap = new HashMap<Coordinates, Boolean>();
+        int count = 0;
+        for(Coordinates coords : getCoords())
+        {
+            count = neighbours(coords, tempMap);
+            boolean currentValue = containsCoords(coords);
             if(currentValue)
             {
                 if(count == 2 || count == 3)
@@ -122,21 +130,30 @@ public class GameOfLife
             }
             else
             {
-                if(count == 3)
+                if(count > 0)
                 {
-                    /*
-                     * Rule 4: Any dead cell with exactly three live neighbours
-                     * becomes a live cell, as if by reproduction.
-                     */
-                    tempMap.put(coords, ALIVE);
+                    if(count == 3)
+                    {
+                        /*
+                         * Rule 4: Any dead cell with exactly three live neighbours
+                         * becomes a live cell, as if by reproduction.
+                         */
+                        tempMap.put(coords, ALIVE);
+                    }
+                    else
+                    {
+                        /*
+                         * Implicit rule: Dead cells that do not experience
+                         * reproduction stay dead.
+                         */
+                        tempMap.put(coords, DEAD);
+                    }
                 }
                 else
                 {
                     /*
-                     * Implicit rule: Dead cells that do not experience
-                     * reproduction stay dead.
+                     * If a cell is dead and has no neighbours then it is no longer relevant.
                      */
-                    tempMap.put(coords, currentValue);
                 }
             }
         }
