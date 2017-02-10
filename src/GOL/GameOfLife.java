@@ -105,7 +105,7 @@ public class GameOfLife
         for(Coordinates coords : getCoords())
         {
             count = neighbours(coords, tempMap);
-            boolean currentValue = containsCoords(coords);
+            boolean currentValue = get(coords);
             if(currentValue)
             {
                 if(count == 2 || count == 3)
