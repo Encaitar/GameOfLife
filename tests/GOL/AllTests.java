@@ -48,7 +48,7 @@ public class AllTests
         GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX(), coords.getY()+1, GameOfLife.ALIVE);
+        addNeighours(gameOfLife, coords, 1);
             
         assertEquals("Pre-condition failed.", 
                     GameOfLife.ALIVE, 
@@ -70,8 +70,7 @@ public class AllTests
         GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX(), coords.getY()+1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY(), GameOfLife.ALIVE);
+        addNeighours(gameOfLife, coords, 2);
             
         assertEquals("Pre-condition failed.", 
                     GameOfLife.ALIVE, 
@@ -93,9 +92,7 @@ public class AllTests
         GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX(), coords.getY()+1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY(), GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY()+1, GameOfLife.ALIVE);
+        addNeighours(gameOfLife, coords, 3);
             
         assertEquals("Pre-condition failed.", 
                     GameOfLife.ALIVE, 
@@ -117,10 +114,7 @@ public class AllTests
         GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()-1, coords.getY()-1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX(), coords.getY()+1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY(), GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY()+1, GameOfLife.ALIVE);
+        addNeighours(gameOfLife, coords, 4);
             
         assertEquals("Pre-condition failed.", 
                     GameOfLife.ALIVE, 
@@ -142,11 +136,7 @@ public class AllTests
         GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()-1, coords.getY()-1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()-1, coords.getY(), GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX(), coords.getY()+1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY(), GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY()+1, GameOfLife.ALIVE);
+        addNeighours(gameOfLife, coords, 5);
             
         assertEquals("Pre-condition failed.", 
                     GameOfLife.ALIVE, 
@@ -168,12 +158,7 @@ public class AllTests
         GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()-1, coords.getY()-1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()-1, coords.getY(), GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX(), coords.getY()-1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX(), coords.getY()+1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY(), GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY()+1, GameOfLife.ALIVE);
+        addNeighours(gameOfLife, coords, 6);
             
         assertEquals("Pre-condition failed.", 
                     GameOfLife.ALIVE, 
@@ -195,13 +180,7 @@ public class AllTests
         GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()-1, coords.getY()-1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()-1, coords.getY(), GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX(), coords.getY()-1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX(), coords.getY()+1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY(), GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY()+1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()-1, coords.getY()+1, GameOfLife.ALIVE);
+        addNeighours(gameOfLife, coords, 7);
             
         assertEquals("Pre-condition failed.", 
                     GameOfLife.ALIVE, 
@@ -223,14 +202,7 @@ public class AllTests
         GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
         gameOfLife.set(coords, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()-1, coords.getY()-1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()-1, coords.getY(), GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX(), coords.getY()-1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX(), coords.getY()+1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY(), GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY()+1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()-1, coords.getY()+1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY()-1, GameOfLife.ALIVE);
+        addNeighours(gameOfLife, coords, 8);
             
         assertEquals("Pre-condition failed.", 
                     GameOfLife.ALIVE, 
@@ -250,9 +222,7 @@ public class AllTests
     {
         GameOfLife gameOfLife = new GameOfLife();
         Coordinates coords = new Coordinates(1,1);
-        gameOfLife.set(coords.getX(), coords.getY()+1, GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY(), GameOfLife.ALIVE);
-        gameOfLife.set(coords.getX()+1, coords.getY()+1, GameOfLife.ALIVE);
+        addNeighours(gameOfLife, coords, 3);
             
         assertEquals("Pre-condition failed.", 
                     GameOfLife.DEAD, 
@@ -261,4 +231,177 @@ public class AllTests
         
         assertEquals("Test failed.", GameOfLife.ALIVE, gameOfLife.get(coords));
     }
+
+    /*
+     * Implicit rule: Dead cells that do not experience
+     * reproduction stay dead.
+     */
+    @Test
+    public void implicitRule_zeroNeighboursStaysDead()
+    {
+        GameOfLife gameOfLife = new GameOfLife();
+        Coordinates coords = new Coordinates(1,1);
+            
+        assertEquals("Pre-condition failed.", 
+                    GameOfLife.DEAD, 
+                    gameOfLife.get(coords));
+        gameOfLife.step();
+        
+        assertEquals("Test failed.", GameOfLife.DEAD, gameOfLife.get(coords));
+    }
+
+    /*
+     * Implicit rule: Dead cells that do not experience
+     * reproduction stay dead.
+     */
+    @Test
+    public void implicitRule_oneNeighboursStaysDead()
+    {
+        GameOfLife gameOfLife = new GameOfLife();
+        Coordinates coords = new Coordinates(1,1);
+        addNeighours(gameOfLife, coords, 1);
+            
+        assertEquals("Pre-condition failed.", 
+                    GameOfLife.DEAD, 
+                    gameOfLife.get(coords));
+        gameOfLife.step();
+        
+        assertEquals("Test failed.", GameOfLife.DEAD, gameOfLife.get(coords));
+    }
+
+    /*
+     * Implicit rule: Dead cells that do not experience
+     * reproduction stay dead.
+     */
+    @Test
+    public void implicitRule_twoNeighboursStaysDead()
+    {
+        GameOfLife gameOfLife = new GameOfLife();
+        Coordinates coords = new Coordinates(1,1);
+        addNeighours(gameOfLife, coords, 2);
+            
+        assertEquals("Pre-condition failed.", 
+                    GameOfLife.DEAD, 
+                    gameOfLife.get(coords));
+        gameOfLife.step();
+        
+        assertEquals("Test failed.", GameOfLife.DEAD, gameOfLife.get(coords));
+    }
+
+    /*
+     * Implicit rule: Dead cells that do not experience
+     * reproduction stay dead.
+     */
+    @Test
+    public void implicitRule_fourNeighboursStaysDead()
+    {
+        GameOfLife gameOfLife = new GameOfLife();
+        Coordinates coords = new Coordinates(1,1);
+        addNeighours(gameOfLife, coords, 4);
+            
+        assertEquals("Pre-condition failed.", 
+                    GameOfLife.DEAD, 
+                    gameOfLife.get(coords));
+        gameOfLife.step();
+        
+        assertEquals("Test failed.", GameOfLife.DEAD, gameOfLife.get(coords));
+    }
+
+    /*
+     * Implicit rule: Dead cells that do not experience
+     * reproduction stay dead.
+     */
+    @Test
+    public void implicitRule_fiveNeighboursStaysDead()
+    {
+        GameOfLife gameOfLife = new GameOfLife();
+        Coordinates coords = new Coordinates(1,1);
+        addNeighours(gameOfLife, coords, 5);
+            
+        assertEquals("Pre-condition failed.", 
+                    GameOfLife.DEAD, 
+                    gameOfLife.get(coords));
+        gameOfLife.step();
+        
+        assertEquals("Test failed.", GameOfLife.DEAD, gameOfLife.get(coords));
+    }
+
+    /*
+     * Implicit rule: Dead cells that do not experience
+     * reproduction stay dead.
+     */
+    @Test
+    public void implicitRule_sixNeighboursStaysDead()
+    {
+        GameOfLife gameOfLife = new GameOfLife();
+        Coordinates coords = new Coordinates(1,1);
+        addNeighours(gameOfLife, coords, 6);
+            
+        assertEquals("Pre-condition failed.", 
+                    GameOfLife.DEAD, 
+                    gameOfLife.get(coords));
+        gameOfLife.step();
+        
+        assertEquals("Test failed.", GameOfLife.DEAD, gameOfLife.get(coords));
+    }
+
+    /*
+     * Implicit rule: Dead cells that do not experience
+     * reproduction stay dead.
+     */
+    @Test
+    public void implicitRule_sevenNeighboursStaysDead()
+    {
+        GameOfLife gameOfLife = new GameOfLife();
+        Coordinates coords = new Coordinates(1,1);
+        addNeighours(gameOfLife, coords, 7);
+            
+        assertEquals("Pre-condition failed.", 
+                    GameOfLife.DEAD, 
+                    gameOfLife.get(coords));
+        gameOfLife.step();
+        
+        assertEquals("Test failed.", GameOfLife.DEAD, gameOfLife.get(coords));
+    }
+
+    /*
+     * Implicit rule: Dead cells that do not experience
+     * reproduction stay dead.
+     */
+    @Test
+    public void implicitRule_eightNeighboursStaysDead()
+    {
+        GameOfLife gameOfLife = new GameOfLife();
+        Coordinates coords = new Coordinates(1,1);
+        addNeighours(gameOfLife, coords, 8);
+
+        assertEquals("Pre-condition failed.", 
+                    GameOfLife.DEAD, 
+                    gameOfLife.get(coords));
+        gameOfLife.step();
+        
+        assertEquals("Test failed.", GameOfLife.DEAD, gameOfLife.get(coords));
+    }
+
+    private void addNeighours(GameOfLife gameOfLife, Coordinates coords, int neighbours)
+    {
+        int count =0;
+        for(int x = coords.getX()-1; x <= coords.getX()+1; x++)
+        {
+            for(int y = coords.getY()-1; y <= coords.getY()+1; y++)
+            {
+                if(x == coords.getX() && y == coords.getY())
+                {
+                    continue;
+                }
+                gameOfLife.set(x, y, GameOfLife.ALIVE);
+                count++;
+                if(count == neighbours)
+                {
+                    return;
+                }
+            }
+        }
+    }
+
 }

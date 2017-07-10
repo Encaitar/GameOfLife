@@ -114,7 +114,10 @@ public class GameOfLife
                      * Rule 2: Any live cell with two or three live neighbours
                      * lives on to the next generation.
                      */
-                    tempMap.put(coords, currentValue);
+                    if(currentValue)
+                    {
+                      tempMap.put(coords, currentValue);
+                    }
                 }
                 else
                 {
@@ -125,7 +128,6 @@ public class GameOfLife
                      * Rule 3: Anny live cell with more than three live
                      * neighbours dies, as if by overcrowding.
                      */
-                    tempMap.put(coords, DEAD);
                 }
             }
             else
@@ -146,7 +148,6 @@ public class GameOfLife
                          * Implicit rule: Dead cells that do not experience
                          * reproduction stay dead.
                          */
-                        tempMap.put(coords, DEAD);
                     }
                 }
                 else
